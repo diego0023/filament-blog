@@ -47,7 +47,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if(!$post->active || $post->publish_at > Carbon::now()){
+        if (!$post->active || $post->publish_at > Carbon::now()) {
             throw new NotFoundHttpException();
         }
 
@@ -70,16 +70,17 @@ class PostController extends Controller
         return view('post.view', compact('post', 'prev', 'next'));
     }
 
-   public function byCategory(Category $category){
+    public function byCategory(Category $category)
+    {
 
-    $posts = Post::query()
-        ->join('category_post', 'posts.id', '=', 'category_post.post_id')
-        ->where('category_post.category_id', '=', $category->id)
-        ->where('active', true)
-        ->whereDate('published_at', '<=', Carbon::now())
-        ->orderBy('published_at', 'asc')
-        ->paginate(10);
+        $posts = Post::query()
+            ->join('category_post', 'posts.id', '=', 'category_post.post_id')
+            ->where('category_post.category_id', '=', $category->id)
+            ->where('active', true)
+            ->whereDate('published_at', '<=', Carbon::now())
+            ->orderBy('published_at', 'asc')
+            ->paginate(10);
 
-    return view('home', compact('posts'));
-   }
+        return view('post.index', compact('posts', 'category'));
+    }
 }

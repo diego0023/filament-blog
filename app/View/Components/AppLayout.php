@@ -8,14 +8,15 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
+
 class AppLayout extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public ?string $metaTitle = null, public ?string $metaDescription = null )
     {
-        //
+
     }
 
     /**

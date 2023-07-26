@@ -2,7 +2,7 @@
  /** @var $posts \Illuminate\Pagination\LengthAwarePaginator */
  ?>
 
- <x-app-layout meta-description="bootcamp blog de practica">
+ <x-app-layout :meta-title="$category->title" meta-description="bootcamp blog de practica">
      <!-- Posts Section -->
     <section class="w-full md:w-2/3 flex flex-col items-center px-3">
 
